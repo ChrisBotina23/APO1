@@ -12,23 +12,38 @@ public class VideoGameManager {
         init();
         showMenu();
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method initializes global variables such as Scanner and video game controller, it also generates the levels of the game and sets the resolution of the game
+    *<strong>pos</strong> vgc <strong>VideoGameController</strong> will be created and initialized, its levels will be initialized 
+    *<strong>pos</strong> sc <strong>Scanner</strong> will be created and initialized 
+    *@return void
+    * </pre>
+    */
     public static void init() {
         sc = new Scanner(System.in);
         vgc = new VideoGameController();
         for(int i=0; i<10; i++) {
             vgc.addLevel((i+1)*100);
         }
-    }
-    
-    // MENU
-
-    public static void showMenu() {
         System.out.println("\nWelcome");
         System.out.println("\nAllowed resolutions: " + vgc.showResolutions());
         System.out.print("Resolution: ");
         int resolution = sc.nextInt();
         vgc.setResolution(resolution);
 
+    }
+    
+    // MENU
+    /**
+    * <pre>
+    *<strong>Description:</strong> shows the menu options to the user and executes the selected method.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
+    public static void showMenu() {
         boolean pass = false;
         int operation = -1;
         while(!pass) {
@@ -92,6 +107,14 @@ public class VideoGameManager {
 
     // MENU OPTIONS
 
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "player registration" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void registerPlayer() {
         sc.nextLine();
         System.out.print("Enter the id: ");
@@ -107,6 +130,14 @@ public class VideoGameManager {
             System.out.println("\nError adding player");
         }
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "treasure registration" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void registerTreasure() {
         sc.nextLine();
         System.out.print("Enter the name: ");
@@ -126,6 +157,14 @@ public class VideoGameManager {
         }
 
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "enemy registration" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void registerEnemy() {
         sc.nextLine();
         System.out.print("Enter the id: ");
@@ -147,6 +186,14 @@ public class VideoGameManager {
         }
 
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "register enemy to level" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void registerEnemyToLevel() {
         if(vgc.showEnemies().equals("")) {
             System.out.println("\nAdd an enemy first");
@@ -168,6 +215,14 @@ public class VideoGameManager {
             System.out.println("\nError adding enemy");
         }
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "register treasure to level" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void registerTreasureToLevel() {
         if(vgc.showTreasures().equals("")) {
             System.out.println("\nAdd a treasure first");
@@ -196,6 +251,14 @@ public class VideoGameManager {
         System.out.println(vgc.showLevelObjects(levelId));
 
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "modify player score" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void modifyPlayerScore() {
         if(vgc.showPlayers().equals("")) {
             System.out.println("\nAdd a player first");
@@ -218,6 +281,14 @@ public class VideoGameManager {
         }
 
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "increase player level" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void increasePlayerLevel() {
         if(vgc.showPlayers().equals("")) {
             System.out.println("\nAdd a player first");
@@ -242,6 +313,14 @@ public class VideoGameManager {
             System.out.println("\nError increasing the level");
         }
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "print level treasures and enemies" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void printLevelObjects() {
         System.out.print("Enter the level ID: ");
         int levelId = sc.nextInt();
@@ -251,6 +330,14 @@ public class VideoGameManager {
         }
         System.out.println(vgc.showLevelObjects(levelId));
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "count treasure name" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void countTreasureName() {
         sc.nextLine();
         System.out.println("\nTreasures: " + vgc.showTreasures());
@@ -258,21 +345,61 @@ public class VideoGameManager {
         String treasureName = sc.nextLine();
         System.out.println("\nThere are " + vgc.countTreasureName(treasureName) + " " + treasureName);
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the necessary data for the requirement "count enemy type" executes it, and shows the results to the user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void countEnemyType() {
         System.out.println("\nEnemy types: " + vgc.showEnemyTypes());
         System.out.print("Enemy type: ");
         int enemyType = sc.nextInt();
         System.out.println("\nThere are " + vgc.countEnemyType(enemyType-1) + " enemies of the given type");
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method executes and shows the results of the requirement "most repeated treasure" to teh user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void mostRepeatedTreasure() {
         System.out.println(vgc.mostRepeatedTreasure());
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method executes and shows the results of the requirement "most valuable enemy" to teh user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void mostValuableEnemy() {
         System.out.println(vgc.mostValuableEnemy());
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method executes and shows the results of the requirement "count tnemy consonants" to teh user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void countEnemyConsonants() {
         System.out.println(vgc.countEnemyConsonants());
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method executes and shows the results of the requirement "print plaeyer top five" to teh user.
+    *<strong>pre:</strong> vgc <strong>VideoGameController</strong> must be initialized
+    *<strong>pre:</strong> sc <strong>Scanner</strong> must be initialized
+    *@return void
+    * </pre>
+    */
     public static void printPlayerTopFive() {
         System.out.println(vgc.playerTop(5));
     }

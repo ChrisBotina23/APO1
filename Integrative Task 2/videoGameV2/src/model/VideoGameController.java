@@ -30,10 +30,10 @@ public class VideoGameController {
 
     // SHOW METHODS
     /**
-     * <pre>
+    * <pre>
     *<strong>Description:</strong> the method prints a readable list of players.
     *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
-    *@return playerList <strong>String</strong>
+    *@return playerList <strong>String</strong> readable list of players
     * </pre>
     */
     public String showPlayers() {
@@ -44,10 +44,10 @@ public class VideoGameController {
         return playerList;
     } 
     /**
-     * <pre>
+    * <pre>
     *<strong>Description:</strong> the method prints a readable list of levels.
     *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
-    *@return levelList <strong>String</strong>
+    *@return levelList <strong>String</strong> readable list of levels
     * </pre>
     */
     public String showLevels() {
@@ -58,10 +58,10 @@ public class VideoGameController {
         return levelList;
     }
     /**
-     * <pre>
+    * <pre>
     *<strong>Description:</strong> the method prints a readable list of enemies.
     *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
-    *@return enemyList <strong>String</strong>
+    *@return enemyList <strong>String</strong> readable list of enemies
     * </pre>
     */
     public String showEnemies() {
@@ -72,10 +72,10 @@ public class VideoGameController {
         return enemyList;
     }
     /**
-     * <pre>
+    * <pre>
     *<strong>Description:</strong> the method prints a readable list of treasures.
     *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
-    *@return treasureList <strong>String</strong>
+    *@return treasureList <strong>String</strong> readable list of treasures
     * </pre>
     */
     public String showTreasures() {
@@ -91,7 +91,7 @@ public class VideoGameController {
     /**
     * <pre>
     *<strong>Description:</strong> the method prints a readable list of resolutions.
-    *@return resolutionList <strong>String</strong>
+    *@return resolutionList <strong>String</strong> readable list of resolutions
     * </pre>
     */
     public String showResolutions() {
@@ -105,7 +105,7 @@ public class VideoGameController {
     /**
     * <pre>
     *<strong>Description:</strong> the method prints a readable list of enemy types.
-    *@return enemyType <strong>String</strong>
+    *@return enemyType <strong>String</strong> readable list of enemy types
     * </pre>
     */
     public String showEnemyTypes() {
@@ -119,7 +119,7 @@ public class VideoGameController {
     /**
     * <pre>
     *<strong>Description:</strong> the method prints a readable list of the menu options.
-    *@return optionList <strong>String</strong>
+    *@return optionList <strong>String</strong> readable list of menu options
     * </pre>
     */
     public String showMenuOptions() {
@@ -132,7 +132,14 @@ public class VideoGameController {
     }
 
     // SEARCH METHODS
-    
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method search and returns a player by his id
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *@param id <strong>String</strong> player id
+    *@return matchedPlayer <strong>Player</strong> found player
+    * </pre>
+    */
     public Player searchPlayer(String id) {
         Player tmpPlayer = null;
         for(int i=0; i<players.length; i++) {
@@ -140,6 +147,14 @@ public class VideoGameController {
         }
         return tmpPlayer;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method search and returns a level by his id
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@param id <strong>int</strong> level id
+    *@return matchedlevel <strong>Level</strong> found level
+    * </pre>
+    */
     public Level searchLevel(int id) {
         Level tmpLevel = null;
         for(int i=0; i<levels.length; i++) {
@@ -147,6 +162,14 @@ public class VideoGameController {
         }
         return tmpLevel;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method search and returns a enemy by his id
+    *<strong>pre:</strong> enemys <strong>Enemy[]</strong> must be initialized
+    *@param id <strong>String</strong> enemy id
+    *@return matchedenemy <strong>Enemy</strong> found enemy
+    * </pre>
+    */
     public Enemy searchEnemy(String id) {
         Enemy tmpEnemy = null;
         for(int i=0; i<enemies.length; i++) {
@@ -154,6 +177,14 @@ public class VideoGameController {
         }
         return tmpEnemy;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method search and returns a treasure by his id
+    *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
+    *@param name <strong>String</strong> treasure id
+    *@return matchedtreasure <strong>Treasure</strong> found treasure
+    * </pre>
+    */
     public Treasure searchTreasure(String name) {
         Treasure tmpTreasure = null;
         for(int i=0; i<treasures.length; i++) {
@@ -163,7 +194,16 @@ public class VideoGameController {
     }
 
     // ADD METHODS
-
+    /**
+    * <pre>
+    *<strong>Description:</strong> This method creates a player and adds it to the player list of the game.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *<strong>pos</strong> players <strong>Player[]</strong> is modified with the new player added.
+    *@param id <strong>String</strong> player identifier that cannot repeat
+    *@param name <strong>String</strong> player name
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addPlayer(String id, String name) {
         Player newPlayer = new Player(id, name);
         if(searchPlayer(id) != null) {
@@ -177,6 +217,15 @@ public class VideoGameController {
         }
         return false;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> This method creates a level and adds it to the level list of the game.
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *<strong>pos</strong> levels <strong>Level[]</strong> is modified with the new level added.
+    *@param scoreLimit <strong>double</strong> score needed to pass to the next level
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addLevel(double scoreLimit) {
         Level newLevel = new Level(scoreLimit);
         for(int i=0; i<levels.length; i++) {
@@ -188,6 +237,18 @@ public class VideoGameController {
         }
         return false;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> This method creates a enemy and adds it to the enemy list of the game.
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
+    *<strong>pos</strong> enemies <strong>Enemy[]</strong> is modified with the new enemy added.
+    *@param id <strong>String</strong> enemy identifier that cannot be repeated in a level
+    *@param name <strong>int</strong> index of the enemy types
+    *@param scoreAddition <strong>double</strong> score that sums to the player if it is defeated
+    *@param scoreSubstraction <strong>double</strong> score that substracts to the player when player loses
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addEnemy(String id, int type, double scoreAddition, double scoreSubstraction) {
         Enemy newEnemy = new Enemy(id, type, scoreAddition, scoreSubstraction);
         if(searchEnemy(id) != null) {
@@ -201,6 +262,17 @@ public class VideoGameController {
         }
         return false;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> This method creates a treasure and adds it to the treasure list of the game.
+    *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
+    *<strong>pos</strong> treasures <strong>Treasure[]</strong> is modified with the new treasure added.
+    *@param name <strong>String</strong> treasure name, it can repeat in a level many times
+    *@param pictureUrl <strong>String</strong> url of the treasure picture
+    *@param scoreAddition <strong>double</strong> score that sums to the player if it is found
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addTreasure(String name, String pictureUrl, double scoreAddition) {
         Treasure newTreasure = new Treasure(name, pictureUrl, scoreAddition);
         if(searchTreasure(name) != null) {
@@ -216,7 +288,14 @@ public class VideoGameController {
     }
 
     // POSITIONS AND RESOLUTION
-
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method generates a random position based on the resolution of the game.
+    *<strong>pre:</strong> takenPositions <strong>int[][]</strong> must be initialized
+    *<strong>pos</strong> takenPositions <strong>int[][]</strong> will be modified with the new postion
+    *@return newPosition <strong>int[]</strong> the new postiion that is not repeated
+    * </pre>
+    */
     public int[] generatePosition() {
         int[] newPosition = {-1,-1};
         do {
@@ -225,6 +304,14 @@ public class VideoGameController {
         } while(isPositionTaken(newPosition));
         return newPosition;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method checks if a given position is taken in the game.
+    *<strong>pre:</strong> takenPositions <strong>int[][]</strong> must be initialized
+    *@param position <strong>int[]</strong> the position generated by the game
+    *@return success <strong>boolean</strong> Whether the position is taken or not
+    * </pre>
+    */
     public boolean isPositionTaken(int[] position) {
         for(int i=0; i<takenPositions.length; i++) {
             if(takenPositions[i] != null && takenPositions[i] == position) {
@@ -235,7 +322,17 @@ public class VideoGameController {
     }
 
     // ADD TO OBJECT METHODS
-
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method adds a an enemy to a level.
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
+    *<strong>pos</strong> levels <strong>Level[]</strong> will be modified with a new enemy added
+    *@param enemyName <strong>String</strong> name of the enemy
+    *@param levelId <strong>int</strong> level identifier
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addEnemyToLevel(String enemyName, int levelId) {
         Enemy tmpEnemy = searchEnemy(enemyName);
         Level tmpLevel = searchLevel(levelId);
@@ -245,6 +342,17 @@ public class VideoGameController {
         if(tmpLevel.addEnemy(tmpEnemy, generatePosition())) return true;
         return false;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method adds a an treasure to a level.
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
+    *<strong>pos</strong> levels <strong>Level[]</strong> will be modified with a new treasure added
+    *@param treasureName <strong>String</strong> name of the treasure
+    *@param levelId <strong>int</strong> level identifier
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean addTreasureToLevel(String treasureName, int levelId) {
         Treasure templateTreasure = searchTreasure(treasureName);
         Treasure tmpTreasure = new Treasure(templateTreasure.getName(), templateTreasure.getPictureUrl(), templateTreasure.getScoreAddition());
@@ -257,7 +365,14 @@ public class VideoGameController {
     }
     
     // SHOW OBJECT METHODS
-
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method prints a readable list of treasures and enemies of the given level.
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@param id <strong>int</strong> level identifier
+    *@return objectList <strong>String</strong> readable list of level objects
+    * </pre>
+    */
     public String showLevelObjects(int id) {
         String objectList = "";
         Level tmpLevel = searchLevel(id);
@@ -268,7 +383,16 @@ public class VideoGameController {
     }
 
     // MODIFY STATISTICS METHODS
-
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method change the score of a user only if the new score is greater than the previous one.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *<strong>pos</strong> players <strong>Player[]</strong> player score of the selected player will be modified
+    *@param playerId <strong>String</strong> player identifier
+    *@param newScore <strong>double</strong> new score given by the user
+    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    * </pre>
+    */
     public boolean modifyPlayerScore(String playerId, double newScore) {
         Player tmpPlayer = searchPlayer(playerId);
         if(tmpPlayer == null) {
@@ -279,6 +403,17 @@ public class VideoGameController {
         tmpPlayer.setScore(newScore);
         return true;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method increases the level of a user only if user score is enough to do it, else will return the score necessary to increase the level.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *<strong>pos</strong> players <strong>Player[]</strong> player level of the selected player will be increased
+    *@param playerId <strong>String</strong> player identifier
+    *@param levelId <strong>double</strong> the level that the user want tot get the new player to
+    *@return <strong>double</strong> It is -1 if the player is not found, 0 if the user level can be increased or a positive number that indicates how many points does the user need to pass
+    * </pre>
+    */
     public double increasePlayerLevel(String playerId, int levelId) {
         Player tmpPlayer = searchPlayer(playerId);
         Level tmpLevel = searchLevel(levelId-1);
@@ -297,6 +432,15 @@ public class VideoGameController {
     }
     
     // COUNT METHODS
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method counts the number of treasures of the game that have the given name.
+    *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@param treasureName <strong>String</strong> name of the treasure to count
+    *@return <strong>int</strong> The number of occurrences
+    * </pre>
+    */
     public int countTreasureName(String treasureName) {
         int s = 0;
         for(int i=0; i<levels.length; i++) {
@@ -304,6 +448,15 @@ public class VideoGameController {
         }
         return s;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method counts the number of enemies of the game that have the given type.
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@param enemyType <strong>int</strong> name of the enemy to count
+    *@return <strong>int</strong> The number of occurrences
+    * </pre>
+    */
     public int countEnemyType(int enemyType) {
         int s = 0;
         for(int i=0; i<levels.length; i++) {
@@ -311,11 +464,18 @@ public class VideoGameController {
         }
         return s;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the most repeated treasure of the game.
+    *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@return <strong>String</strong> The name of the most repeated treasure and its score addition
+    * </pre>
+    */
     public String mostRepeatedTreasure() {
         if(showTreasures().equals("")) {
             return "\nThere are not treasures yet";
         }
-
         Treasure mostRepeated = treasures[0];
         int max = countTreasureName(mostRepeated.getName());
         for(int i=1; i<treasures.length; i++) {
@@ -324,13 +484,20 @@ public class VideoGameController {
                 max = countTreasureName(mostRepeated.getName());
             }
         }
-
         if(max == 0) {
             return "\nThere are not treasures assigned to levels";
         } else {
             return "\nThe most repeated treasure is " + mostRepeated.getName() + " with " + max + " elements";
         }
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method gets the most repeated type of enemy of the game.
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
+    *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
+    *@return <strong>String</strong> The name of the most valuable enemy and its score addition
+    * </pre>
+    */
     public String mostValuableEnemy() {
         if(showEnemies().equals("")) return "\nAdd an enemy first";
 
@@ -350,6 +517,13 @@ public class VideoGameController {
             return "\nThe most valuable enemy is " + mostValuable.getId() + " of type " + mostValuable.getType() + " on level " + level;
         }
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method counts the number of consonants that are in the name of the enemies of the game.
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
+    *@return <strong>int</strong> The number of consonants of the names of enemies of the whole game
+    * </pre>
+    */
     public int countEnemyConsonants() {
         int s = 0;
         for(int i=0; i<enemies.length; i++) {
@@ -366,6 +540,14 @@ public class VideoGameController {
     }
     
     // TOP
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method shows a readable list of players top based on their score.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *@param topLimit <strong>int</strong> The number of positions to print
+    *@return topList <strong>String</strong> The list of players top
+    * </pre>
+    */
     public String playerTop(int topLimit) {
         if(countRealPlayers(players) < 5) {
             return "\nThere are not enough players";
@@ -385,6 +567,14 @@ public class VideoGameController {
         }
         return topList;
     }
+    /**
+     * <pre>
+    *<strong>Description:</strong> the method gets the next player to be included in the top.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *@param topPlayers <strong>Player[]</strong> Current players top list
+    *@return topPlayer <strong>Player</strong> The next player on the top
+    * </pre>
+    */
     public Player getTopPlayer(Player[] topPlayers) {
         double maxScore = -1;
         Player topPlayer = null;
@@ -398,6 +588,14 @@ public class VideoGameController {
         }
         return topPlayer;
     }
+    /**
+     * <pre>
+    *<strong>Description:</strong> the method counts the number of elements of a list that are not null.
+    *<strong>pre:</strong> players <strong>Player[]</strong> must be initialized
+    *@param players <strong>Player[]</strong> The list of all players in the game
+    *@return <strong>int</strong> The number of defined players of the player list
+    * </pre>
+    */
     public int countRealPlayers(Player[] players) {
         for(int i=0; i<players.length; i++) {
             if(players[i] == null) {
@@ -406,6 +604,14 @@ public class VideoGameController {
         }
         return players.length;
     }
+    /**
+    * <pre>
+    *<strong>Description:</strong> the method returns wether the given player id is in the top list of players or not.
+    *@param tmpPlayer <strong>Player</strong> Player to locate in the list
+    *@param topPLayers <strong>Player[]</strong> current list of top players
+    *@return <strong>boolean</strong> whether the given player is in the list or not
+    * </pre>
+    */
     public boolean isPlayerInTop(Player tmpPlayer, Player[] topPlayers) {
         for(int i=0; i<topPlayers.length; i++) {
             if(topPlayers[i] != null && topPlayers[i] == tmpPlayer) {

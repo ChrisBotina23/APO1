@@ -46,7 +46,6 @@ public class Player {
     public void setLives(int lives) {
         this.lives = lives;
     }
-
     public String toString() {
         return ""
         + "id: " + this.id
