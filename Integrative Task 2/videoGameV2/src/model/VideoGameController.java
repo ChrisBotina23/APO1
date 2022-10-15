@@ -8,7 +8,7 @@ public class VideoGameController {
     private Level[] levels;
     private Enemy[] enemies;
     private int[] resolution;
-    private static final int[][] resolutions = {{640,480},{960,540},{1280,720},{1920,1080},{2560,1440},{3840,2160},{7680,4320}};
+    private static final int[][] RESOLUTIONS = {{640,480},{960,540},{1280,720},{1920,1080},{2560,1440},{3840,2160},{7680,4320}};
     private int[][] takenPositions;
     public VideoGameController() {
         this.players = new Player[20];
@@ -25,7 +25,7 @@ public class VideoGameController {
         return resolution;
     }
     public void setResolution(int resolution) {
-        this.resolution = this.resolutions[resolution-1];
+        this.resolution = this.RESOLUTIONS[resolution-1];
     }
 
     // SHOW METHODS
@@ -37,11 +37,11 @@ public class VideoGameController {
     * </pre>
     */
     public String showPlayers() {
-        String playerList = "";
-        for(int i=0; i<players.length; i++) {
-            if(players[i] != null) playerList += "\n" + players[i].toString();
+        StringBuilder playerList = new StringBuilder();
+        for (Player player : players) {
+            if (player != null) playerList.append("\n").append(player);
         }
-        return playerList;
+        return playerList.toString();
     } 
     /**
     * <pre>
@@ -51,11 +51,11 @@ public class VideoGameController {
     * </pre>
     */
     public String showLevels() {
-        String levelList = "";
-        for(int i=0; i<levels.length; i++) {
-            if(levels[i] != null) levelList += "\n" + levels[i].toString();
+        StringBuilder levelList = new StringBuilder();
+        for (Level level : levels) {
+            if (level != null) levelList.append("\n").append(level);
         }
-        return levelList;
+        return levelList.toString();
     }
     /**
     * <pre>
@@ -65,11 +65,11 @@ public class VideoGameController {
     * </pre>
     */
     public String showEnemies() {
-        String enemyList = "";
-        for(int i=0; i<enemies.length; i++) {
-            if(enemies[i] != null) enemyList += "\n" + enemies[i].toString();
+        StringBuilder enemyList = new StringBuilder();
+        for (Enemy enemy : enemies) {
+            if (enemy != null) enemyList.append("\n").append(enemy);
         }
-        return enemyList;
+        return enemyList.toString();
     }
     /**
     * <pre>
@@ -79,11 +79,11 @@ public class VideoGameController {
     * </pre>
     */
     public String showTreasures() {
-        String treasureList = "";
-        for(int i=0; i<treasures.length; i++) {
-            if(treasures[i] != null) treasureList += "\n" + treasures[i].toString();
+        StringBuilder treasureList = new StringBuilder();
+        for (Treasure treasure : treasures) {
+            if (treasure != null) treasureList.append("\n").append(treasure);
         }
-        return treasureList;
+        return treasureList.toString();
     }
 
     // SHOW ENUMS
@@ -95,12 +95,12 @@ public class VideoGameController {
     * </pre>
     */
     public String showResolutions() {
-        String resolutionList = "";
+        StringBuilder resolutionList = new StringBuilder();
         Resolution[] resolutions = Resolution.values();
         for(int i=0; i<resolutions.length; i++) {
-            resolutionList += "\n" + (i+1) + ". " + resolutions[i] + " (" + this.resolutions[i][0] + "x" + this.resolutions[i][1] + ")";
+            resolutionList.append("\n").append(i + 1).append(". ").append(resolutions[i]).append(" (").append(this.RESOLUTIONS[i][0]).append("x").append(this.RESOLUTIONS[i][1]).append(")");
         }
-        return resolutionList;
+        return resolutionList.toString();
     }
     /**
     * <pre>
@@ -109,12 +109,12 @@ public class VideoGameController {
     * </pre>
     */
     public String showEnemyTypes() {
-        String typeList = "";
+        StringBuilder typeList = new StringBuilder();
         EnemyType[] types = EnemyType.values();
         for(int i=0; i<types.length; i++) {
-            typeList += (i+1) + ". " + types[i] + ", ";
+            typeList.append(i + 1).append(". ").append(types[i]).append(", ");
         }
-        return typeList;
+        return typeList.toString();
     }
     /**
     * <pre>
@@ -123,12 +123,12 @@ public class VideoGameController {
     * </pre>
     */
     public String showMenuOptions() {
-        String optionList = "";
+        StringBuilder optionList = new StringBuilder();
         MenuOption[] options = MenuOption.values();
         for(int i=0; i<options.length; i++) {
-            optionList += i + ". " + options[i] + "  |  ";
+            optionList.append(i).append(". ").append(options[i]).append("  |  ");
         }
-        return optionList;
+        return optionList.toString();
     }
 
     // SEARCH METHODS
@@ -142,8 +142,8 @@ public class VideoGameController {
     */
     public Player searchPlayer(String id) {
         Player tmpPlayer = null;
-        for(int i=0; i<players.length; i++) {
-            if(players[i] != null && players[i].getId().equals(id)) tmpPlayer = players[i];
+        for (Player player : players) {
+            if (player != null && player.getId().equals(id)) tmpPlayer = player;
         }
         return tmpPlayer;
     }
@@ -152,28 +152,28 @@ public class VideoGameController {
     *<strong>Description:</strong> the method search and returns a level by his id
     *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
     *@param id <strong>int</strong> level id
-    *@return matchedlevel <strong>Level</strong> found level
+    *@return matchedLevel <strong>Level</strong> found level
     * </pre>
     */
     public Level searchLevel(int id) {
         Level tmpLevel = null;
-        for(int i=0; i<levels.length; i++) {
-            if(levels[i] != null && levels[i].getId() == id) tmpLevel = levels[i];
+        for (Level level : levels) {
+            if (level != null && level.getId() == id) tmpLevel = level;
         }
         return tmpLevel;
     }
     /**
     * <pre>
     *<strong>Description:</strong> the method search and returns a enemy by his id
-    *<strong>pre:</strong> enemys <strong>Enemy[]</strong> must be initialized
+    *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
     *@param id <strong>String</strong> enemy id
-    *@return matchedenemy <strong>Enemy</strong> found enemy
+    *@return matchedEnemy <strong>Enemy</strong> found enemy
     * </pre>
     */
     public Enemy searchEnemy(String id) {
         Enemy tmpEnemy = null;
-        for(int i=0; i<enemies.length; i++) {
-            if(enemies[i] != null && enemies[i].getId().equals(id)) tmpEnemy = enemies[i];
+        for (Enemy enemy : enemies) {
+            if (enemy != null && enemy.getId().equals(id)) tmpEnemy = enemy;
         }
         return tmpEnemy;
     }
@@ -182,13 +182,13 @@ public class VideoGameController {
     *<strong>Description:</strong> the method search and returns a treasure by his id
     *<strong>pre:</strong> treasures <strong>Treasure[]</strong> must be initialized
     *@param name <strong>String</strong> treasure id
-    *@return matchedtreasure <strong>Treasure</strong> found treasure
+    *@return matchedTreasure <strong>Treasure</strong> found treasure
     * </pre>
     */
     public Treasure searchTreasure(String name) {
         Treasure tmpTreasure = null;
-        for(int i=0; i<treasures.length; i++) {
-            if(treasures[i] != null && treasures[i].getName().equals(name)) tmpTreasure = treasures[i];
+        for (Treasure treasure : treasures) {
+            if (treasure != null && treasure.getName().equals(name)) tmpTreasure = treasure;
         }
         return tmpTreasure;
     }
@@ -201,7 +201,7 @@ public class VideoGameController {
     *<strong>pos</strong> players <strong>Player[]</strong> is modified with the new player added.
     *@param id <strong>String</strong> player identifier that cannot repeat
     *@param name <strong>String</strong> player name
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean addPlayer(String id, String name) {
@@ -223,7 +223,7 @@ public class VideoGameController {
     *<strong>pre:</strong> levels <strong>Level[]</strong> must be initialized
     *<strong>pos</strong> levels <strong>Level[]</strong> is modified with the new level added.
     *@param scoreLimit <strong>double</strong> score needed to pass to the next level
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean addLevel(double scoreLimit) {
@@ -243,14 +243,14 @@ public class VideoGameController {
     *<strong>pre:</strong> enemies <strong>Enemy[]</strong> must be initialized
     *<strong>pos</strong> enemies <strong>Enemy[]</strong> is modified with the new enemy added.
     *@param id <strong>String</strong> enemy identifier that cannot be repeated in a level
-    *@param name <strong>int</strong> index of the enemy types
+    *@param type <strong>int</strong> index of the enemy types
     *@param scoreAddition <strong>double</strong> score that sums to the player if it is defeated
-    *@param scoreSubstraction <strong>double</strong> score that substracts to the player when player loses
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@param scoreSubtraction <strong>double</strong> score that subtracts to the player when player loses
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
-    public boolean addEnemy(String id, int type, double scoreAddition, double scoreSubstraction) {
-        Enemy newEnemy = new Enemy(id, type, scoreAddition, scoreSubstraction);
+    public boolean addEnemy(String id, int type, double scoreAddition, double scoreSubtraction) {
+        Enemy newEnemy = new Enemy(id, type, scoreAddition, scoreSubtraction);
         if(searchEnemy(id) != null) {
             return false;
         }
@@ -270,7 +270,7 @@ public class VideoGameController {
     *@param name <strong>String</strong> treasure name, it can repeat in a level many times
     *@param pictureUrl <strong>String</strong> url of the treasure picture
     *@param scoreAddition <strong>double</strong> score that sums to the player if it is found
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean addTreasure(String name, String pictureUrl, double scoreAddition) {
@@ -292,8 +292,8 @@ public class VideoGameController {
     * <pre>
     *<strong>Description:</strong> the method generates a random position based on the resolution of the game.
     *<strong>pre:</strong> takenPositions <strong>int[][]</strong> must be initialized
-    *<strong>pos</strong> takenPositions <strong>int[][]</strong> will be modified with the new postion
-    *@return newPosition <strong>int[]</strong> the new postiion that is not repeated
+    *<strong>pos</strong> takenPositions <strong>int[][]</strong> will be modified with the new position
+    *@return newPosition <strong>int[]</strong> the new position that is not repeated
     * </pre>
     */
     public int[] generatePosition() {
@@ -313,8 +313,8 @@ public class VideoGameController {
     * </pre>
     */
     public boolean isPositionTaken(int[] position) {
-        for(int i=0; i<takenPositions.length; i++) {
-            if(takenPositions[i] != null && takenPositions[i] == position) {
+        for (int[] takenPosition : takenPositions) {
+            if (takenPosition != null && takenPosition == position) {
                 return true;
             }
         }
@@ -330,7 +330,7 @@ public class VideoGameController {
     *<strong>pos</strong> levels <strong>Level[]</strong> will be modified with a new enemy added
     *@param enemyName <strong>String</strong> name of the enemy
     *@param levelId <strong>int</strong> level identifier
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean addEnemyToLevel(String enemyName, int levelId) {
@@ -339,8 +339,7 @@ public class VideoGameController {
         if(tmpEnemy == null || tmpLevel == null) { 
             return false;
         }
-        if(tmpLevel.addEnemy(tmpEnemy, generatePosition())) return true;
-        return false;
+        return tmpLevel.addEnemy(tmpEnemy, generatePosition());
     }
     /**
     * <pre>
@@ -350,7 +349,7 @@ public class VideoGameController {
     *<strong>pos</strong> levels <strong>Level[]</strong> will be modified with a new treasure added
     *@param treasureName <strong>String</strong> name of the treasure
     *@param levelId <strong>int</strong> level identifier
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean addTreasureToLevel(String treasureName, int levelId) {
@@ -360,7 +359,13 @@ public class VideoGameController {
         if(tmpTreasure == null || tmpLevel == null) {
             return false;
         }
-        if(tmpLevel.addTreasure(tmpTreasure, generatePosition())) return true;
+        int[] newPosition = generatePosition();
+        if(tmpLevel.addTreasure(tmpTreasure, newPosition)) {
+            for(int[] position : takenPositions) {
+                if(position == null) position = newPosition;
+            }
+            return true;
+        }
         return false;
     }
     
@@ -390,7 +395,7 @@ public class VideoGameController {
     *<strong>pos</strong> players <strong>Player[]</strong> player score of the selected player will be modified
     *@param playerId <strong>String</strong> player identifier
     *@param newScore <strong>double</strong> new score given by the user
-    *@return success <strong>boolean</strong> Whether the operation succeded or not
+    *@return success <strong>boolean</strong> Whether the operation succeeded or not
     * </pre>
     */
     public boolean modifyPlayerScore(String playerId, double newScore) {
@@ -443,8 +448,8 @@ public class VideoGameController {
     */
     public int countTreasureName(String treasureName) {
         int s = 0;
-        for(int i=0; i<levels.length; i++) {
-            s += levels[i].countTreasureName(treasureName);
+        for (Level level : levels) {
+            s += level.countTreasureName(treasureName);
         }
         return s;
     }
@@ -459,8 +464,8 @@ public class VideoGameController {
     */
     public int countEnemyType(int enemyType) {
         int s = 0;
-        for(int i=0; i<levels.length; i++) {
-            s += levels[i].countEnemyType(enemyType);
+        for (Level level : levels) {
+            s += level.countEnemyType(enemyType);
         }
         return s;
     }
@@ -504,11 +509,11 @@ public class VideoGameController {
         Enemy mostValuable = null;
         double max = -1;
         int level = -1;
-        for(int i=0; i<levels.length; i++) {
-            if(levels[i].mostValuableEnemy() != null && levels[i].mostValuableEnemy().getScoreAddition() > max) {
-                mostValuable = levels[i].mostValuableEnemy();
+        for (Level value : levels) {
+            if (value.mostValuableEnemy() != null && value.mostValuableEnemy().getScoreAddition() > max) {
+                mostValuable = value.mostValuableEnemy();
                 max = mostValuable.getScoreAddition();
-                level = levels[i].getId();
+                level = value.getId();
             }
         }
         if(max == -1) {
@@ -524,15 +529,15 @@ public class VideoGameController {
     *@return <strong>int</strong> The number of consonants of the names of enemies of the whole game
     * </pre>
     */
-    public int countEnemyConsonants() {
+    public String countEnemyConsonants() {
         int s = 0;
-        for(int i=0; i<enemies.length; i++) {
-            if(enemies[i] != null) {
-                
-                String enemyNameTmp = enemies[i].getId();
-                for(int j=0; j<enemyNameTmp.length(); j++) {
+        for (Enemy enemy : enemies) {
+            if (enemy != null) {
+
+                String enemyNameTmp = enemy.getId();
+                for (int j = 0; j < enemyNameTmp.length(); j++) {
                     char tmpChar = Character.toLowerCase(enemyNameTmp.charAt(j));
-                    if(tmpChar != 'a' && tmpChar != 'e' && tmpChar != 'i' && tmpChar != 'o' && tmpChar != 'u') s++;
+                    if (tmpChar != 'a' && tmpChar != 'e' && tmpChar != 'i' && tmpChar != 'o' && tmpChar != 'u') s++;
                 }
             }
         }
@@ -552,20 +557,20 @@ public class VideoGameController {
         if(countRealPlayers(players) < 5) {
             return "\nThere are not enough players";
         }
-        String topList = "";
-        Player[] playerTop = new Player[countRealPlayers(players)];
+        StringBuilder topList = new StringBuilder();
+        Player[] playerTop = new Player[countRealPlayers(players)]; // player top
         for(int i=0; i<playerTop.length; i++) {
             System.out.println(getTopPlayer(playerTop));
             playerTop[i] = getTopPlayer(playerTop);
         }
 
-        topList += "\nPlayer Top 5: ";
+        topList.append("\nPlayer Top 5: ");
         for(int i=0; i<playerTop.length &&  i<5; i++) {
             if(playerTop[i] != null) {
-                topList += "\n" + (i+1) + ". name: " + playerTop[i].getName() + ", score: " + playerTop[i].getScore();
+                topList.append("\n").append(i + 1).append(". name: ").append(playerTop[i].getName()).append(", score: ").append(playerTop[i].getScore());
             }
         }
-        return topList;
+        return topList.toString();
     }
     /**
      * <pre>
@@ -578,10 +583,10 @@ public class VideoGameController {
     public Player getTopPlayer(Player[] topPlayers) {
         double maxScore = -1;
         Player topPlayer = null;
-        for(int i=0; i<players.length; i++) {
-            if(players[i] != null && !isPlayerInTop(players[i], topPlayers)) {
-                if(players[i].getScore() >= maxScore) {
-                    topPlayer = players[i];
+        for (Player player : players) {
+            if (player != null && !isPlayerInTop(player, topPlayers)) {
+                if (player.getScore() >= maxScore) {
+                    topPlayer = player;
                     maxScore = topPlayer.getScore();
                 }
             }
@@ -606,15 +611,15 @@ public class VideoGameController {
     }
     /**
     * <pre>
-    *<strong>Description:</strong> the method returns wether the given player id is in the top list of players or not.
+    *<strong>Description:</strong> the method returns whether the given player id is in the top list of players or not.
     *@param tmpPlayer <strong>Player</strong> Player to locate in the list
-    *@param topPLayers <strong>Player[]</strong> current list of top players
+    *@param topPlayers <strong>Player[]</strong> current list of top players
     *@return <strong>boolean</strong> whether the given player is in the list or not
     * </pre>
     */
     public boolean isPlayerInTop(Player tmpPlayer, Player[] topPlayers) {
-        for(int i=0; i<topPlayers.length; i++) {
-            if(topPlayers[i] != null && topPlayers[i] == tmpPlayer) {
+        for (Player topPlayer : topPlayers) {
+            if (topPlayer != null && topPlayer == tmpPlayer) {
                 return true;
             }
         }

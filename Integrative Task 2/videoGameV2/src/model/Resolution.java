@@ -7,5 +7,5 @@ public enum Resolution {
     FULL_HD,
     QUAD_HD,
     ULTRA_HD_8K,
-    ULTRA_HD_4K;
+    ULTRA_HD_4K
 }
