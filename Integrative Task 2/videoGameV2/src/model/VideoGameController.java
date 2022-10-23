@@ -42,7 +42,7 @@ public class VideoGameController {
             if (player != null) playerList.append("\n").append(player);
         }
         return playerList.toString();
-    } 
+    }
     /**
     * <pre>
     *<strong>Description:</strong> the method prints a readable list of levels.
